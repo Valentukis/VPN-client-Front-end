@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="first">
+      <div class="welcome-to">Welcome to</div>
+      <div class="triangles">
+        <img class="triangles-child" alt="" src="Group7.svg" />
+
+        <div class="group-parent">
+          <img class="group-child" alt="" src="Group28.svg" />
+
+          <img class="group-item" alt="" src="Group27.svg" />
+        </div>
+      </div>
+      <b class="nachovpn">NachoVPN</b>
+
+      <div class="login" id="loginContainer">
+        <div class="button-text">Login</div>
+      </div>
+      <div class="register-button" id="registerContainer">
+        <div class="button-text">Register</div>
+      </div>
+
+      <div class="haha-get-it">Haha, get it? Like ‘not your VPN’...?</div>
+    </div>
+
+    <script>
+      var registerContainer = document.getElementById("registerContainer");
+      if (registerContainer) {
+        registerContainer.addEventListener("click", function (e) {
+          console.log("Register container clicked!");
+        });
+      }
+
+      var loginContainer = document.getElementById("loginContainer");
+      if (loginContainer) {
+        loginContainer.addEventListener("click", function (e) {
+          console.log("Login container clicked!");
+        });
+      }
+    </script>
+  </body>
+</html>

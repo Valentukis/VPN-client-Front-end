@@ -1,1 +1,1 @@
-#Kazkas padarykit readme pls
+#I am reading you

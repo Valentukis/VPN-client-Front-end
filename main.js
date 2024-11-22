@@ -1,11 +1,13 @@
+const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 
+const isDev = process.env.NODE_ENV !== "production";
 const isMac = process.platform === "darwin";
 
 // Create the main window
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: isDev ? 1200 : 800,
     height: 600,
     useContentSize: true,
     webPreferences: {
@@ -14,11 +16,16 @@ function createMainWindow() {
     },
   });
 
+  // Open dev tools if in dev env
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
+
   // Load your HTML file
   mainWindow.loadFile("index.html");
 
-  const { width, height } = mainWindow.getContentBounds();
-  console.log(width, height);
+  // const { width, height } = mainWindow.getContentBounds();
+  // console.log(width, height);
 }
 
 // App ready

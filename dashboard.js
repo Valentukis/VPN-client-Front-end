@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os'); // Import the os module to get the Documents folder path
 
 document.addEventListener('DOMContentLoaded', () => {
   const connectButton = document.getElementById('connectButton');
@@ -35,8 +36,9 @@ verb 3
 key-direction 1
       `;
 
-      // Define the output path for the .ovpn file
-      const filePath = path.join(__dirname, 'user-config.ovpn');
+      // Save the file to the user's Documents folder
+      const documentsPath = path.join(os.homedir(), 'Documents'); // Get the Documents folder path
+      const filePath = path.join(documentsPath, 'user-config.ovpn'); // Path for the .ovpn file
 
       // Write the configuration to the file
       fs.writeFile(filePath, vpnConfig, (err) => {
@@ -45,7 +47,7 @@ key-direction 1
           alert('Failed to generate VPN configuration file!');
         } else {
           console.log('VPN configuration saved at:', filePath);
-          alert('VPN configuration file generated and saved successfully!');
+          alert(`VPN configuration file generated and saved successfully in: ${filePath}`);
         }
       });
     });

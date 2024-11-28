@@ -12,3 +12,6 @@ dist/
 
 # Ignore macOS system files
 .DS_Store
+
+# Ignore the .ovpn file
+user-config.ovpn

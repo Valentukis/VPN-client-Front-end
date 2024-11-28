@@ -1,9 +1,65 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./login.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />
   </head>
-  <body></body>
+  <body>
+    <div class="login">Login</div>
+
+    <form id="loginForm">
+      <div class="form-area" style="top: 240px">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <p>Forgot Email? <a href="index.html">Click Here</a></p>
+      </div>
+
+      <div class="form-area" style="top: 358px">
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <p>Forgot password? <a href="index.html">Click Here</a></p>
+      </div>
+
+      <button type="button" id="loginButton">Login</button>
+    </form>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const loginButton = document.getElementById('loginButton');
+        const loginForm = document.getElementById('loginForm'); // Reference to the form
+
+        if (loginButton) {
+          loginButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            // Check if the form is valid
+            if (loginForm.reportValidity()) {
+              // If valid, simulate login logic
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+
+              console.log(`Email: ${email}, Password: ${password}`);
+
+              // Redirect to the dashboard page
+              window.location.href = "dashboard.html";
+            } else {
+              // If invalid, the browser will show validation messages automatically
+              console.log('Invalid input detected');
+            }
+          });
+        }
+      });
+    </script>
+  </body>
 </html>

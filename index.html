@@ -23,10 +23,10 @@
       </div>
       <b class="nachovpn">NachoVPN</b>
 
-      <div class="login" id="loginContainer">
+      <div class="button-container login-button" id="loginContainer">
         <div class="button-text">Login</div>
       </div>
-      <div class="register-button" id="registerContainer">
+      <div class="button-container register-button" id="registerContainer">
         <div class="button-text">Register</div>
       </div>
 
@@ -37,14 +37,14 @@
       var registerContainer = document.getElementById("registerContainer");
       if (registerContainer) {
         registerContainer.addEventListener("click", function (e) {
-          console.log("Register container clicked!");
+          window.location.href = "register.html"; // Redirect to "register.html"
         });
       }
 
       var loginContainer = document.getElementById("loginContainer");
       if (loginContainer) {
         loginContainer.addEventListener("click", function (e) {
-          console.log("Login container clicked!");
+          window.location.href = "login.html"; // Redirect to "login.html"
         });
       }
     </script>

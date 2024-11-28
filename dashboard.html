@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="dashboard-container">
-        <h1 id="greeting">Hello, User!</h1>
-        <p>Welcome to your dashboard. Here you can manage your account and access your data.</p>
+  </head>
+  <body>
+    <h1>Welcome to the Dashboard</h1>
+    <div class="button-container connect-button" id="connectButton">
+      <button class="button-text">Connect to VPN</button>
     </div>
 
-    <script>
-        // Get the user's email from localStorage or session storage (assuming it's stored after login)
-        const userEmail = sessionStorage.getItem('userEmail') || 'User';
-        document.getElementById('greeting').textContent = `Hello, ${userEmail}!`;
-    </script>
-</body>
+    <script src="dashboard.js"></script>
+  </body>
 </html>

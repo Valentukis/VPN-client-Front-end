@@ -17,26 +17,42 @@
     <form id="registerForm">
       <div class="form-area" style="top: 188px">
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <label for="email"></label>
+          <!-- Added placeholder attribute -->
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
         </div>
       </div>
 
       <div class="form-area" style="top: 290px">
         <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <label for="password"></label>
+          <!-- Added placeholder attribute -->
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
         </div>
         <p>Password should be at least 8 characters long</p>
       </div>
 
       <div class="form-area" style="top: 392px">
         <div class="form-group">
-          <label for="confirm_password">Confirm Password:</label>
+          <label for="confirm_password"></label>
+          <!-- Added placeholder attribute -->
           <input
             type="password"
             id="confirm_password"
             name="confirm_password"
+            placeholder="Re-enter your password"
             required
           />
         </div>

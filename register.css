@@ -2,13 +2,10 @@
 
 .register {
     position: absolute;
-    top: 136px;
+    top: 106px;
     left: 93px;
     font-size: 40px;
     font-weight: 600;
-    color: #000;
-    font-style: normal;
-    line-height: normal;
     font-family: Poppins;
 }
 .form-group {
@@ -35,6 +32,7 @@ button {
     top: 456px;
     left: 98px;
     font-family: Poppins;
+    border: none;
     font-size: 13px;
     border-radius: 5px;
 }

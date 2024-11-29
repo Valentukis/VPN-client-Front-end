@@ -31,22 +31,33 @@
         <p>Forgot password? <a href="index.html">Click Here</a></p>
       </div>
 
-      <button type="button" id="loginButton">Login</button>
+      <button id="loginButton">Login</button>
     </form>
+    <p style="top: 550px; left: 98px; position: absolute">
+      <a href="index.html">Back</a>
+    </p>
+
+    <img
+      class="login-triangles"
+      src="Images/Login triangles.png"
+      alt="Login
+      triangles"
+    />
+
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const loginButton = document.getElementById('loginButton');
-        const loginForm = document.getElementById('loginForm'); // Reference to the form
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginButton = document.getElementById("loginButton");
+        const loginForm = document.getElementById("loginForm"); // Reference to the form
 
         if (loginButton) {
-          loginButton.addEventListener('click', (event) => {
+          loginButton.addEventListener("click", (event) => {
             event.preventDefault(); // Prevent default form submission
 
             // Check if the form is valid
             if (loginForm.reportValidity()) {
               // If valid, simulate login logic
-              const email = document.getElementById('email').value;
-              const password = document.getElementById('password').value;
+              const email = document.getElementById("email").value;
+              const password = document.getElementById("password").value;
 
               console.log(`Email: ${email}, Password: ${password}`);
 
@@ -54,7 +65,7 @@
               window.location.href = "dashboard.html";
             } else {
               // If invalid, the browser will show validation messages automatically
-              console.log('Invalid input detected');
+              console.log("Invalid input detected");
             }
           });
         }

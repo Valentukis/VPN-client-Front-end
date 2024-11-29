@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "electron": "31.2.1",
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "electron-reload": "^2.0.0-alpha.1"
   },
   "dependencies": {
     "mysql2": "^3.11.3"

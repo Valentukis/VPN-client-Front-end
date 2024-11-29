@@ -1,3 +1,22 @@
+@keyframes falling1 {
+    from {
+        transform: translateY(-853px);
+    }
+
+    to {
+        transform: translateY(-73px);
+    }
+}
+
+@keyframes falling2 {
+    from {
+        transform: translateY(-1590px);
+    }
+    to {
+        transform: translateY(-150px);
+    }
+}
+
 .welcome-to {
     position: absolute;
     top: 50px;
@@ -20,7 +39,7 @@
 .register-button {
     top: 402px;
     left: 256px;
-    background: linear-gradient(90.85deg, #ff8a08, #ffe400);
+    background: linear-gradient(90deg, #ff8a08, #ffe400);
 }
 .button-container {
     position: absolute;
@@ -56,6 +75,7 @@
     font-size: 24px;
     color: rgba(0, 0, 0, 0.5);
     font-family: Poppins;
+    z-index: 0;
 }
 html, body {
     width: 100%;
@@ -64,39 +84,17 @@ html, body {
     margin: 0;
     padding: 0;
 }
-.triangles-child {
+.big-triangles {
     position: absolute;
-    top: 737px;
-    left: 0px;
-    width: 1111px;
-    height: 1560px;
-}
-.group-child {
-    position: absolute;
-    top: 0px;
-    left: 568px;
-    width: 408.5px;
-    height: 2191px;
-}
-.group-item {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 408.5px;
-    height: 2191px;
-}
-.group-parent {
-    position: absolute;
-    top: 0px;
-    left: 73px;
-    width: 976.5px;
-    height: 2191px;
-}
-.triangles {
-    position: absolute;
-    top: -1590px;
     left: -161px;
-    width: 1111px;
-    height: 2297px;
-    opacity: 0.01;
+    animation: falling1 10s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+.small-triangles {
+    position: absolute;
+    left: -88px;
+    animation: falling2 10s linear infinite;
+    z-index: -1;
+    pointer-events: none;
 }

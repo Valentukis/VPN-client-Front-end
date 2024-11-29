@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');  /*veliau istrinsit*/
+
+.login {
+    position: absolute;
+    top: 136px;
+    left: 93px;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: Poppins;
+}
+.form-group {
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 23px;
+    border: 1px solid #9A9A9A;
+    background: #F6F6F6;
+    font-family: Poppins;
+    font-size: 20px;
+}
+.form-area {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 93px;
+    gap: 7px;
+}
+button {
+    position: absolute;
+    top: 456px;
+    left: 98px;
+    font-family: Poppins;
+    font-size: 13px;
+    border-radius: 5px;
+}
+p {
+    font-family: Poppins;
+    font-size: 13px;
+    margin: 0;
+}
+
+.form-group {
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; /* Align label and input vertically */
+    padding: 0 10px; /* Add horizontal padding */
+    border: 1px solid #9A9A9A;
+    background: #F6F6F6;
+    font-family: Poppins;
+    font-size: 20px;
+    gap: 10px; /* Add spacing between label and input */
+}
+
+label {
+    font-family: Poppins;
+    font-size: 20px; /* Match input font size */
+    color: inherit; /* Use default or inherited color */
+    margin: 0; /* Remove any default margin */
+}
+
+input {
+    flex-grow: 1; /* Let input take the remaining space */
+    height: 80%; /* Adjust height to fit container */
+    border: none; /* Remove border */
+    outline: none; /* Remove focus outline */
+    background: #F6F6F6; /* Match the field container's background color */
+    font-size: 20px; /* Match font size */
+    font-family: 'Dancing Script', cursive;                   /*ISTRINSIT KAI REIKES  ----> /*     font-family: Poppins, sans-serif; 
+    background: transparent; /* Ensure background matches container */
+}

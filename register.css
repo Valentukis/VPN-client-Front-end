@@ -70,6 +70,7 @@ input {
     outline: none; /* Remove focus outline */
     background: #F6F6F6; /* Match the field container's background color */
     font-size: 20px; /* Match font size */
-    font-family: 'Dancing Script', cursive;                   /*ISTRINSIT KAI REIKES  ----> /*     font-family: Poppins, sans-serif; 
+    font-family: 'Dancing Script', cursive;                   
+    font-family: Poppins, sans-serif; 
     background: transparent; /* Ensure background matches container */
 }

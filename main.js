@@ -1,8 +1,13 @@
 const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
+const electronReload = require("electron-reload");
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV === "production";
 const isMac = process.platform === "darwin";
+
+electronReload(__dirname, {
+  electron: path.join(__dirname, "node_modules", ".bin", "electron"),
+});
 
 // Create the main window
 function createMainWindow() {

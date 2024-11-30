@@ -1,4 +1,4 @@
-@keyframes moving {
+@keyframes sliding {
     from {
         transform: translateY(-620px)
     }
@@ -31,7 +31,7 @@ button {
     left: 98px;
     font-family: Poppins;
     border: none;
-    font-size: 13px;
+    font-size: 15px;
     border-radius: 5px;
 }
 p {
@@ -74,7 +74,7 @@ input {
 .login-triangles {
     position: absolute;
     left: 220px;
-    animation: moving 10 linear infinite;
+    animation: sliding 15s linear infinite;
     pointer-events: none;
     z-index: -1;
 }

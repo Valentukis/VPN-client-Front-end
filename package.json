@@ -7,11 +7,12 @@
   "version": "1.0.0",
   "author": "Arnas",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-builder",
+    "start": "cross-env NODE_ENV=development electron .",
+    "build": "cross-env NODE_ENV=production electron-builder",
     "dev": "nodemon index.js"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "electron": "31.2.1",
     "electron-builder": "^25.1.8",
     "electron-reload": "^2.0.0-alpha.1",

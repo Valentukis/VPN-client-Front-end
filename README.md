@@ -124,7 +124,20 @@ Ensure you have the following installed on your system:
     npm install
     ```
 
-    > **Note:** If the frontend has separate dependencies, navigate to the frontend directory and install them accordingly.
+    > **Note:** If the frontend is located in a different directory, navigate to that directory and install the dependencies:
+
+    ```bash
+    cd frontend
+    npm install
+    ```
+
+2. **Configure Environment Variables**
+
+    If the frontend requires any environment variables, create a `.env` file in the frontend directory and add the necessary variables. For example:
+
+    ```env
+    API_URL=http://localhost:3000
+    ```
 
 ## Usage
 
@@ -163,7 +176,3 @@ Ensure you have the following installed on your system:
     The built application will be available in the `dist` folder.
 
     > **Note:** Ensure the backend is properly deployed and accessible for the frontend to communicate in a production environment.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).

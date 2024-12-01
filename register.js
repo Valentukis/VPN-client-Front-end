@@ -33,19 +33,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // Simulate Mock API Response
-                const mockApiResponse = mockRegisterApi(email, password);
+                try {
+                    // Send data to the backend
+                    const response = await fetch('http://localhost:3000/auth/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
 
-                // Handle Mock API Response
-                if (mockApiResponse.success) {
-                    errorMessage.style.color = 'green';
-                    errorMessage.textContent = 'Registration successful!';
-                    registerForm.reset(); // Clear the form
-                    setTimeout(() => {
-                        window.location.href = "dashboard.html"; // Redirect after success
-                    }, 1000); // Redirect after 1 second
-                } else {
-                    errorMessage.textContent = mockApiResponse.error || 'Registration failed.';
+                    if (response.status === 201) {
+                        const data = await response.json();
+                        errorMessage.style.color = 'green';
+                        errorMessage.textContent = data.message || 'Registration successful!';
+                        registerForm.reset(); // Clear the form
+                        setTimeout(() => {
+                            window.location.href = "dashboard.html"; // Redirect after success
+                        }, 1000); // Redirect after 1 second
+                    } else {
+                        const errorData = await response.json();
+                        errorMessage.textContent = errorData.error || 'Registration failed.';
+                    }
+                } catch (error) {
+                    console.error('Error connecting to the backend:', error);
+                    errorMessage.textContent = 'An error occurred. Please try again later.';
                 }
             } else {
                 errorMessage.textContent = 'Please fill out all fields correctly.';
@@ -53,25 +65,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-/**
- * Mock API for user registration
- * Simulates backend behavior for the register endpoint
- */
-function mockRegisterApi(email, password) {
-    // Simulate duplicate email check
-    const existingEmails = ['test@example.com', 'user@example.com'];
-
-    if (existingEmails.includes(email)) {
-        return {
-            success: false,
-            error: 'Email is already registered.',
-        };
-    }
-
-    // Simulate success response
-    return {
-        success: true,
-        message: 'User registered successfully!',
-    };
-}

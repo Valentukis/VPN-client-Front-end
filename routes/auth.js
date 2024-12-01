@@ -40,8 +40,40 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/test', (req, res) => {
-    res.json({ message: 'Test route is working!' });
-});
-
 module.exports = router;
+
+// POST /auth/login endpoint
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    // Step 1: Validate input
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Email and password are required.' });
+    }
+
+    try {
+        // Step 2: Check if the user exists in the database
+        const [user] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
+
+        if (user.length === 0) {
+            // No user found with the provided email
+            return res.status(401).json({ error: 'Invalid email or password.' });
+        }
+
+        const storedPasswordHash = user[0].password_hash;
+
+        // Step 3: Compare the provided password with the stored hash
+        const isPasswordValid = await bcrypt.compare(password, storedPasswordHash);
+
+        if (!isPasswordValid) {
+            // Password doesn't match
+            return res.status(401).json({ error: 'Invalid email or password.' });
+        }
+
+        // Step 4: Return success response
+        res.status(200).json({ message: 'Login successful!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred during login.' });
+    }
+});

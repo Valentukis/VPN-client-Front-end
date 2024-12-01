@@ -2,7 +2,7 @@
 
 Welcome to **NachoVPN**, a desktop application built with **Electron** that provides secure VPN connectivity with user authentication. This project is developed by a team of six first-year students at **Vilnius University**, as part of the **Informational Systems Engineering** course.
 
-> **Note:** This project is currently in **Alpha** stage. The backend has not yet been fully deployed and is intended for development and testing purposes. The final submission deadline is in approximately two weeks, with weekly progress reports.
+> **Note:** This project is currently in **Alpha** stage. The backend has not yet been fully deployed and is intended for development and testing purposes.
 
 ## Table of Contents
 
@@ -57,10 +57,10 @@ NachoVPN is a VPN client that not only provides secure connectivity but also inc
 ## Team
 
 - **Valentinas Šamatovičius** - Backend, Team Lead
-- **Eglė Gurklytė** - Frontend, Jira Management, Weekly Presentations
+- **Eglė Gurklytė** - Frontend, Jira Management
 - **Lukošius Arnas** - Frontend, Documentation
 - **Ugnius Pilipavičius** - Backend, Documentation
-- **Adomas Lukoševičius** - Server Management, Backend
+- **Adomas Lukoševičius** - Backend, Server Management
 - **Emilė Kėsaitė** - Frontend
 - **Benediktas Juozapaitis** - Consultant (Advisor for Server Management)
 
@@ -114,11 +114,6 @@ Ensure you have the following installed on your system:
 
     > **Note:** Update the database schema as needed for the minigame feature.
 
-4. **Server Setup**
-
-    - An OpenVPN Access Server has been configured.
-    - The backend code will be manually updated on the server periodically, as this is a minor project.
-
 ### Frontend Setup
 
 1. **Install Dependencies**
@@ -168,18 +163,6 @@ Ensure you have the following installed on your system:
     The built application will be available in the `dist` folder.
 
     > **Note:** Ensure the backend is properly deployed and accessible for the frontend to communicate in a production environment.
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/YourFeature`.
-3. Commit your changes: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin feature/YourFeature`.
-5. Open a pull request.
-
-Please ensure your contributions adhere to the project's coding standards and include relevant tests.
 
 ## License
 

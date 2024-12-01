@@ -8,12 +8,14 @@
   "author": "Arnas",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "dev": "nodemon index.js"
   },
   "devDependencies": {
     "electron": "31.2.1",
     "electron-builder": "^25.1.8",
-    "electron-reload": "^2.0.0-alpha.1"
+    "electron-reload": "^2.0.0-alpha.1",
+    "nodemon": "^3.1.7"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

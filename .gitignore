@@ -15,3 +15,6 @@ dist/
 
 # Ignore the .ovpn file
 user-config.ovpn
+
+#Ignore env 
+.env

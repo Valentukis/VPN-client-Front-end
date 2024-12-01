@@ -16,7 +16,11 @@
     "electron-reload": "^2.0.0-alpha.1"
   },
   "dependencies": {
-    "mysql2": "^3.11.3"
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mysql2": "^3.11.5"
   },
   "build": {
     "appId": "com.example.myelectronapp",

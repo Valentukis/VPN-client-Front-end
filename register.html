@@ -3,40 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title> <!-- Update this line -->
+    <title>Register</title>
+    <!-- Update this line -->
     <link rel="stylesheet" href="./register.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />
   </head>
   <body>
-    <div class="login">Register</div>
+    <div class="register">Register</div>
 
     <form id="registerForm">
-      <div class="form-area" style="top: 140px">
+      <div class="form-area" style="top: 188px">
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <label for="email"></label>
+          <!-- Added placeholder attribute -->
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
         </div>
       </div>
 
-      <div class="form-area" style="top: 240px">
+      <div class="form-area" style="top: 290px">
         <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <label for="password"></label>
+          <!-- Added placeholder attribute -->
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
         </div>
         <p>Password should be at least 8 characters long</p>
       </div>
-      
 
-      <div class="form-area" style="top: 340px">
+      <div class="form-area" style="top: 392px">
         <div class="form-group">
-          <label for="confirm_password">Confirm Password:</label>
-          <input type="password" id="confirm_password" name="confirm_password" required />
+          <label for="confirm_password"></label>
+          <!-- Added placeholder attribute -->
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            placeholder="Re-enter your password"
+            required
+          />
         </div>
       </div>
 
-      <button type="button" id="registerButton">Register</button>
+      <button id="registerButton">Register</button>
     </form>
-    
+    <p style="top: 550px; left: 98px; position: absolute">
+      <a href="index.html">Back</a>
+    </p>
+
+    <img
+      class="register-triangles"
+      src="Images/register triangles.png"
+      alt="register triangles"
+    />
+
     <script src="./register.js"></script>
   </body>
 </html>

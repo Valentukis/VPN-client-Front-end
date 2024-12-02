@@ -7,16 +7,23 @@
   "version": "1.0.0",
   "author": "Arnas",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
+    "start": "cross-env NODE_ENV=development electron .",
+    "build": "cross-env NODE_ENV=production electron-builder",
+    "dev": "nodemon index.js"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "electron": "31.2.1",
-    "electron-builder": "^25.1.8"
+    "electron-builder": "^25.1.8",
+    "electron-reload": "^2.0.0-alpha.1",
+    "nodemon": "^3.1.7"
   },
   "dependencies": {
-    "electron-reload": "^2.0.0-alpha.1",
-    "mysql2": "^3.11.3"
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mysql2": "^3.11.5"
   },
   "build": {
     "appId": "com.example.myelectronapp",

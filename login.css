@@ -1,3 +1,13 @@
+@keyframes sliding {
+    from {
+        transform: translateY(-620px)
+    }
+
+    to {
+        transform: translateY(-19px)
+    }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');  /*veliau istrinsit*/
 
 .login {
@@ -7,18 +17,6 @@
     font-size: 40px;
     font-weight: 600;
     font-family: Poppins;
-}
-.form-group {
-    width: 400px;
-    height: 50px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    padding-left: 23px;
-    border: 1px solid #9A9A9A;
-    background: #F6F6F6;
-    font-family: Poppins;
-    font-size: 20px;
 }
 .form-area {
     position: absolute;
@@ -32,7 +30,8 @@ button {
     top: 456px;
     left: 98px;
     font-family: Poppins;
-    font-size: 13px;
+    border: none;
+    font-size: 15px;
     border-radius: 5px;
 }
 p {
@@ -54,7 +53,6 @@ p {
     font-size: 20px;
     gap: 10px; /* Add spacing between label and input */
 }
-
 label {
     font-family: Poppins;
     font-size: 20px; /* Match input font size */
@@ -71,4 +69,20 @@ input {
     font-size: 20px; /* Match font size */
     font-family: 'Dancing Script', cursive;                   /*ISTRINSIT KAI REIKES  ----> /*     font-family: Poppins, sans-serif; 
     background: transparent; /* Ensure background matches container */
+}
+
+.login-triangles {
+    position: absolute;
+    left: 220px;
+    animation: sliding 15s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevents scrolling */
+    margin: 0;
+    padding: 0;
 }

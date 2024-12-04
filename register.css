@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');  /*veliau istrinsit*/
 
 @keyframes Slidin {
-    form {
+    from {
         transform: translateY(-19px);
     }
 
     to {
-        transform: translateY(-620px);
+        transform: translateY(-618px);
     }
 }
 
@@ -70,6 +70,9 @@ label {
     color: inherit; /* Use default or inherited color */
     margin: 0; /* Remove any default margin */
 }
+
+
+
 input {
     flex-grow: 1; /* Let input take the remaining space */
     height: 80%; /* Adjust height to fit container */
@@ -77,7 +80,7 @@ input {
     outline: none; /* Remove focus outline */
     background: #F6F6F6; /* Match the field container's background color */
     font-size: 20px; /* Match font size */
-    font-family: 'Dancing Script', cursive;                   /*ISTRINSIT KAI REIKES  ----> /*     font-family: Poppins, sans-serif; 
+    font-family: Poppins, sans-serif; 
     background: transparent; /* Ensure background matches container */
 }
 .register-triangles {

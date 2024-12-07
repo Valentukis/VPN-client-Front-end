@@ -1,0 +1,211 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Container for button */
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .connect-button button {
+    background-color: #ff8c00e1; /* Orange */
+    color:#ff8c00dd;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for button */
+  .connect-button button:hover {
+    background-color: #e07b00;
+  }
+  
+  .rectangle-parent {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    background-color: #fff;
+    height: 600px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 18px;
+    color: #000;
+    font-family: Poppins, Arial, sans-serif;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  
+  }
+  
+  /* Main Header and Text */
+  .nacho-vpn {
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: #333;
+    margin-top: 35px;
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .about-us, .help, .profile {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #333;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: color 0.3s ease;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .profile {
+    top: 105px;
+    left: 65px;
+  }
+  .about-us {
+    top: 195px;
+    left: 55px;
+  }
+  .help {
+    top: 240px;
+    left: 80px;
+  }
+  
+  .about-us:hover, .help:hover, .profile:hover {
+    color: #e07b00;
+  }
+  
+  /* Rectangular Shapes */
+  .frame-child, .frame-item, .frame-inner, .rectangle-div, .frame-child1, .frame-child3, .frame-child4 {
+    border-radius: 10px;
+    background-color: #ffa56a; /* Light Orange */
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Specific sizes and positions */
+  .frame-child {
+    position: absolute;
+    top: 16px;
+    left: 14px;
+    width: 167px;
+    height: 573px;
+    opacity: 0.8;
+  }
+  
+  .frame-item {
+    position: absolute;
+    top: 58px;
+    left: 32px;
+    width: 139px;
+    height: 37px;
+  }
+  
+  .frame-inner {
+    position: absolute;
+    top: 58px;
+    left: 27px;
+    width: 139px;
+    height: 37px;
+  }
+  
+  .rectangle-div {
+    position: absolute;
+    top: 110px;
+    left: 35px;
+    width: 124px;
+    height: 30px;
+  }
+  
+  .frame-child1 {
+    position: absolute;
+    top: 155px;
+    left: 36px;
+    width: 124px;
+    height: 30px;
+  }
+  
+  .frame-child3 {
+    position: absolute;
+    top: 200px;
+    left: 35px;
+    width: 124px;
+    height: 30px;
+  }
+  
+  .frame-child4 {
+    position: absolute;
+    top: 245px;
+    left: 36px;
+    width: 124px;
+    height: 30px;
+  }
+  
+  /* Image Styling */
+  .nachis-1, .europa, .nachis-2 {
+    object-fit: cover;
+  }
+  
+  .nachis-1 {
+    position: absolute;
+    z-index: 100;
+    top: 200px;
+    left: 20px;
+    width: 120px;
+    height: auto;
+  }
+  
+  .europa {
+    position: absolute;
+    z-index: 90;
+    top: 0px;
+    left: 190px;
+    width: 700px;
+    height: 700px;
+  }
+  
+  .nachis-2 {
+    position: absolute;
+    z-index: 110;
+    top: 120px;
+    left: 500px;
+    width: 80px;
+    height: auto;
+    border: 2px solid #ffa56a;
+  
+  }
+  
+  /* Flexbox for better alignment */
+  .rectangle-parent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  
+  

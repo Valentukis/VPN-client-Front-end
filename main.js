@@ -2,7 +2,7 @@ const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 
 // Check if the environment is development
-const isDev = process.env.NODE_ENV !== "production"; // Fix here
+const isDev = process.env.NODE_ENV === "development" || !app.isPackaged;
 const isMac = process.platform === "darwin";
 
 // Only require electron-reload in development
@@ -29,9 +29,9 @@ function createMainWindow() {
   });
 
   // Open dev tools if in dev environment
-  if (isDev) {
+  /*if (isDev) {
     mainWindow.webContents.openDevTools();
-  }
+  } Cia ryt komparcho pritstatymui, isdev checkas neveikia*/
 
   // Load your HTML file
   mainWindow.loadFile("index.html");

@@ -1,13 +1,20 @@
 const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
-const electronReload = require("electron-reload");
 
-const isDev = process.env.NODE_ENV === "production";
+// Check if the environment is development
+const isDev = process.env.NODE_ENV === "development" || !app.isPackaged;
 const isMac = process.platform === "darwin";
 
-electronReload(__dirname, {
-  electron: path.join(__dirname, "node_modules", ".bin", "electron"),
-});
+// Only require electron-reload in development
+if (isDev) {
+  try {
+    require("electron-reload")(__dirname, {
+      electron: path.join(__dirname, "node_modules", ".bin", "electron"),
+    });
+  } catch (error) {
+    console.error("Failed to load electron-reload:", error);
+  }
+}
 
 // Create the main window
 function createMainWindow() {
@@ -21,23 +28,20 @@ function createMainWindow() {
     },
   });
 
-  // Open dev tools if in dev env
-  if (isDev) {
+  // Open dev tools if in dev environment
+  /*if (isDev) {
     mainWindow.webContents.openDevTools();
-  }
+  } Cia ryt komparcho pritstatymui, isdev checkas neveikia*/
 
   // Load your HTML file
   mainWindow.loadFile("index.html");
-
-  // const { width, height } = mainWindow.getContentBounds();
-  // console.log(width, height);
 }
 
 // App ready
 app.whenReady().then(() => {
   createMainWindow();
 
-  // implement menu
+  // Implement menu
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
 

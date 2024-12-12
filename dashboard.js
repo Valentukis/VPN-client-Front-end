@@ -1,40 +1,26 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os'); // Import the os module to get the Documents folder path
+const { exec } = require('child_process'); // Import child_process for running commands
 
 document.addEventListener('DOMContentLoaded', () => {
   const connectButton = document.getElementById('connectButton');
 
   if (connectButton) {
     connectButton.addEventListener('click', () => {
+
+     // Create the credentials file
+  const credentialsContent = 'username\npassword';
+  const credentialsPath = path.join(os.homedir(), 'Documents', 'credentials.txt');
+
+  fs.writeFileSync(credentialsPath, credentialsContent);
+
+
       // Generate OpenVPN configuration content
       const vpnConfig = `
-client
-dev tun
-proto udp
-remote your-server-address 1194
-resolv-retry infinite
-nobind
-persist-key
-persist-tun
-remote-cert-tls server
-cipher AES-256-CBC
-auth SHA256
-verb 3
-<ca>
-# Insert Certificate Authority (CA) content here
-</ca>
-<cert>
-# Insert Client Certificate here
-</cert>
-<key>
-# Insert Private Key here
-</key>
-<tls-auth>
-# Insert TLS Auth Key here
-</tls-auth>
-key-direction 1
-      `;
+
+`;
+
 
       // Save the file to the user's Documents folder
       const documentsPath = path.join(os.homedir(), 'Documents'); // Get the Documents folder path
@@ -48,8 +34,36 @@ key-direction 1
         } else {
           console.log('VPN configuration saved at:', filePath);
           alert(`VPN configuration file generated and saved successfully in: ${filePath}`);
+
+          // Connect to OpenVPN using the generated file
+          connectToVPN(filePath);
         }
       });
     });
   }
 });
+
+function connectToVPN(configFilePath) {
+  const openVPNCommand = `openvpn --config "${configFilePath}"`; // Command to connect using OpenVPN
+
+  exec('openvpn --version', (error, stdout) => {
+    if (error) {
+      alert('OpenVPN is not installed or not in the PATH. Please install OpenVPN and try again.');
+      return;
+    }
+    console.log('OpenVPN version:', stdout);
+  });
+
+  exec(openVPNCommand, (error, stdout, stderr) => {
+    console.log('PATH environment variable:', process.env.PATH);
+    if (error) {
+      console.error('Error connecting to VPN:', error);
+      alert('Failed to connect to VPN. Please ensure OpenVPN is installed and try again.');
+      return;
+    }
+
+    console.log('VPN Connection Output:', stdout);
+    console.error('VPN Connection Errors:', stderr);
+    alert('Successfully connected to VPN!');
+  });
+}

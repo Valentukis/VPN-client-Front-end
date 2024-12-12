@@ -16,6 +16,7 @@ if (isDev) {
   }
 }
 
+
 // Create the main window
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
@@ -29,9 +30,9 @@ function createMainWindow() {
   });
 
   // Open dev tools if in dev environment
-  /*if (isDev) {
+  if (isDev) {
     mainWindow.webContents.openDevTools();
-  } Cia ryt komparcho pritstatymui, isdev checkas neveikia*/
+  } /*Cia ryt komparcho pritstatymui, isdev checkas neveikia*/
 
   // Load your HTML file
   mainWindow.loadFile("index.html");

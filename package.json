@@ -39,8 +39,15 @@
       "!README.md",
       "!dist/",
       "!builder-debug.yml",
-      "!node_modules/electron-reload"
+      "!node_modules/electron-reload",
+      "resources/**"
     ],
+    "extraResources": [
+    {
+      "from": "resources",
+      "to": "resources"
+    }
+  ],
     "win": {
       "target": [
         "nsis",
@@ -52,7 +59,8 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "include": "installer.nsh"
     },
     "mac": {
       "target": [

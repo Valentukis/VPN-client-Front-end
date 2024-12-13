@@ -1,6 +1,8 @@
 const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 
+let vpnProcess; // Track the global vpnProcess here
+
 // Check if the environment is development
 const isDev = process.env.NODE_ENV === "development" || !app.isPackaged;
 const isMac = process.platform === "darwin";
@@ -68,4 +70,12 @@ const menu = [
 
 app.on("window-all-closed", () => {
   if (!isMac) app.quit();
+});
+
+
+app.on('before-quit', () => {
+  if (vpnProcess) {
+    console.log('Terminating OpenVPN process...');
+    vpnProcess.kill('SIGTERM'); // Gracefully terminate OpenVPN
+  }
 });

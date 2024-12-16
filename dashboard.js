@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os'); // Import the os module to get the Documents folder path
 const { spawn } = require('child_process'); // Use spawn for better process control
+const isDev = process.env.NODE_ENV === "development" || !require("electron").app.isPackaged;
 
 let vpnProcess = null; // Declare vpnProcess globally to track the OpenVPN process
 
@@ -174,7 +175,10 @@ zHpfzIGb/y1HPw4OJSg9cO3iI/bRVMMBWQ==
 });
 
 function connectToVPN(configFilePath) {
-  const openVPNCommand = 'openvpn';
+  const openVPNCommand = isDev
+    ? path.join("C:", "Program Files", "OpenVPN", "bin", "openvpn.exe") // Development absolute path
+    : path.join(process.resourcesPath, "resources", "openvpn", "bin", "openvpn.exe"); // Build path
+
   const openVPNArgs = ['--config', configFilePath];
 
   vpnProcess = spawn(openVPNCommand, openVPNArgs);

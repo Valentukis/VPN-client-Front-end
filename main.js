@@ -19,7 +19,8 @@ if (isDev) {
 // Create the main window
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
-    width: isDev ? 1200 : 800,
+    // width: isDev ? 1200 : 800,
+    width: 800,
     height: 600,
     useContentSize: true,
     webPreferences: {

@@ -1,0 +1,26 @@
+* {
+    position: absolute;
+    font-family: Poppins;
+}
+
+h1 {
+    width: 300px;
+    top: 38px;
+    left: 250px;
+    font-size: 32px;
+}
+
+h2 {
+    width: 300px;
+    left: 250px;
+    font-size: 32px;
+}
+
+.h2-container {
+    width: 190px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    border-color: aqua;
+    left: 305px;
+}

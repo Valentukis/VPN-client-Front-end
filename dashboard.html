@@ -1,39 +1,97 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, width=device-width">
-  <link rel="stylesheet" href="./index.css" />
-  <link rel="stylesheet" href="dashboard.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="dashboard.css" />
 
-  <title>NACHO VPN Dashboard</title>
-</head>
-<body>
-  <!-- Connect Button -->
-  <div class="button-container connect-button" id="connectButton">
-    <button class="button-text">Connect to VPN</button>
-  </div>
+    <title>NACHO VPN Dashboard</title>
+  </head>
+  <body>
+    <!-- Connect Button
+    <button id="connectButton">
+      <img
+        class="connect-button"
+        src="Images/connection.png"
+        alt="Connect button"
+      />
+    </button>
+  -->
+    <!-- Jei back'as veikia ir be iskomentuotos vietos - istrinkit -->
 
-  <div class="rectangle-parent">
-    <!-- Rectangles and UI Elements -->
-    <div class="frame-child"></div>
-    <div class="frame-item"></div>
-    <div class="frame-inner"></div>
-    <div class="rectangle-div"></div>
-    <div class="frame-child1"></div>
-    <div class="frame-child3"></div>
-    <div class="frame-child4"></div>
-    
-    <b class="nacho-vpn">NACHO VPN</b>
-    <div class="about-us">About Us</div>
-    <div class="help">Help</div>
-    <div class="profile">Profile</div>  
-    <!-- Images with alt text for better accessibility -->
-    <img class="nachis.1" src="Images/Nachiss.png" alt="Nachis 1">
-    <img class="europa" src="Images/europa.png" alt="europa">
-    <img class="nachis.2" src="Images/Nachiss.png" alt="Nachis 2">
-  </div>
+    <input
+      type="image"
+      src="Images/connection.png"
+      name="connectButton"
+      class="connect-button"
+      id="connectButton"
+      onclick="changeImage()"
+    />
 
-  <script src="dashboard.js"></script>
-</body>
+    <img style="z-index: -1" src="Images/Dash-background.png" alt="Europa" />
+    <img class="white-border" src="Images/white-border.png" alt="Border" />
+    <img class="nachis" src="Images/Nachis.png" alt="Nachis" />
+    <img
+      class="buttons"
+      style="left: 39px"
+      id="home"
+      src="Images/home.png"
+      alt="Home"
+    />
+    <img
+      class="buttons"
+      style="left: 191px"
+      id="profile"
+      src="Images/profile.png"
+      alt="Profile"
+    />
+    <img
+      class="buttons"
+      style="left: 543px"
+      id="aboutUs"
+      src="Images/about_us.png"
+      alt="About us"
+    />
+    <img
+      class="buttons"
+      style="left: 704px"
+      id="questions"
+      src="Images/questions.png"
+      alt="Questions"
+    />
+
+    <script src="dashboard.js"></script>
+    <script>
+      var home = document.getElementById("home");
+      if (home) {
+        home.addEventListener("click", function (e) {
+          window.location.href = "dashboard.html";
+        });
+      }
+
+      var aboutUs = document.getElementById("aboutUs");
+      if (aboutUs) {
+        aboutUs.addEventListener("click", function (e) {
+          window.location.href = "aboutus.html";
+        });
+      }
+
+      let isDefaultImage = true;
+
+      function changeImage() {
+        const connectButton = document.getElementById("connectButton");
+        connectButton.classList.add("fade-out");
+        setTimeout(() => {
+          if (isDefaultImage) {
+            connectButton.src = "Images/connection_clicked.png";
+          } else {
+            connectButton.src = "Images/connection.png";
+          }
+          isDefaultImage = !isDefaultImage;
+          connectButton.classList.remove("fade-out");
+        });
+      }
+    </script>
+  </body>
 </html>

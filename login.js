@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           try {
-              // Send data to the backend
-              const response = await fetch('http://localhost:3000/auth/login', {
+              // Send data to the backend  
+              const SERVER_IP = process.env.SERVER_IP || 'localhost';
+              const PORT = process.env.PORT || '3000';
+              
+              const response = await fetch(`http://${SERVER_IP}:${PORT}/auth/login`, {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',

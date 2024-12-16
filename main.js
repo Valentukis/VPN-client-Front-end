@@ -1,11 +1,9 @@
 const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 const { exec, spawn } = require("child_process");
+const fs = require("fs");
 
 let vpnProcess; // Track the global vpnProcess here
-
-// Path to the OpenVPN executable
-const openvpnPath = "C:\\Program Files\\OpenVPN\\bin\\openvpn.exe";
 
 // Check if the environment is development
 const isDev = process.env.NODE_ENV === "development" || !app.isPackaged;
@@ -22,37 +20,47 @@ if (isDev) {
   }
 }
 
-// Function to check and install OpenVPN
+// Path to the OpenVPN executable
+const openvpnPath = "C:\\Program Files\\OpenVPN\\bin\\openvpn.exe";
+const installerPath = isDev
+  ? path.join(__dirname, "resources", "OpenVPN-2.6.12-I001-amd64.msi")
+  : path.join(process.resourcesPath, "resources", "OpenVPN-2.6.12-I001-amd64.msi");
+
 function checkAndInstallOpenVPN() {
-  // Determine the path to the installer dynamically
-  const installerPath = isDev
-    ? path.join(__dirname, "resources", "OpenVPN-2.6.12-I001-amd64.msi")
-    : path.join(process.resourcesPath, "resources", "OpenVPN-2.6.12-I001-amd64.msi");
+  console.log("Checking if OpenVPN is installed...");
 
-  exec(`${openvpnPath} --version`, (error, stdout) => {
-    if (error) {
-      console.log("OpenVPN is not installed. Launching installer...");
+  // First, check if the OpenVPN executable exists
+  if (fs.existsSync(openvpnPath)) {
+    console.log("OpenVPN is already installed.");
+    return;
+  }
 
-      // Use msiexec with correct parameters for installation
-      const installer = spawn("msiexec", ["/i", `"${installerPath}"`, "/quiet", "/norestart"], {
-        stdio: "inherit",
-        shell: true,
-      });
-
-      installer.on("close", (code) => {
-        if (code === 0) {
-          console.log("OpenVPN installed successfully.");
-        } else {
-          console.error(`OpenVPN installation failed with exit code ${code}`);
-        }
-      });
-
-      installer.on("error", (err) => {
-        console.error("Failed to launch OpenVPN installer:", err);
-      });
-    } else {
+  // Run 'openvpn --version' to verify installation
+  exec(`"${openvpnPath}" --version`, (error, stdout, stderr) => {
+    if (!error && stdout) {
       console.log("OpenVPN is already installed:", stdout);
+      return;
     }
+
+    console.warn("OpenVPN is not installed. Launching installer...");
+
+    // Install OpenVPN silently
+    const installer = spawn("msiexec", ["/i", installerPath, "/qn"], {
+      stdio: "inherit",
+      shell: true,
+    });
+
+    installer.on("close", (code) => {
+      if (code === 0) {
+        console.log("OpenVPN installed successfully.");
+      } else {
+        console.error(`OpenVPN installation failed with exit code ${code}`);
+      }
+    });
+
+    installer.on("error", (err) => {
+      console.error("Failed to launch OpenVPN installer:", err);
+    });
   });
 }
 

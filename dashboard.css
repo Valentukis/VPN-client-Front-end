@@ -43,8 +43,9 @@
   }
   
   .white-border {
-    position: absolute;
+    position: fixed;
     top: 449px;
+    left: 0px;
     pointer-events: none;
   }
   
@@ -55,7 +56,7 @@
   }
 
   .buttons {
-    position: absolute;
+    position: fixed;
     top: 513px;
     cursor: pointer;
     border-radius: 50%;

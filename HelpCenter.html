@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <link rel="stylesheet" href="HelpCenter.css">
+</head>
+<body>
+    <div class="help-center">
+        <h1>Help Center</h1>
+        <h2>How can we help you?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer('q1')">
+                <h3>Lorem ipsum dolor sit amet?</h3>
+                <div id="q1" class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non orci nec dui congue pharetra.</div>
+            </div>
+            <div class="question" onclick="toggleAnswer('q2')">
+                <h3>Quisque fringilla quam in libero?</h3>
+                <div id="q2" class="answer">Quisque fringilla quam in libero fermentum, a hendrerit justo facilisis. Nullam id dolor et libero elementum.</div>
+            </div>
+            <div class="question" onclick="toggleAnswer('q3')">
+                <h3>Vestibulum suscipit velit nec diam?</h3>
+                <div id="q3" class="answer">Vestibulum suscipit velit nec diam fermentum, ut tempor lacus blandit. Donec vel ipsum eu turpis tincidunt efficitur.</div>
+            </div>
+            <div class="question" onclick="toggleAnswer('q4')">
+                <h3>Fusce nec nisl sed leo pretium?</h3>
+                <div id="q4" class="answer">Fusce nec nisl sed leo pretium venenatis. Vivamus eu odio id libero vestibulum congue.</div>
+            </div>
+            <div class="question" onclick="toggleAnswer('q5')">
+                <h3>Curabitur sit amet massa at risus?</h3>
+                <div id="q5" class="answer">Curabitur sit amet massa at risus viverra suscipit a nec libero. Proin eu sapien ullamcorper neque fermentum.</div>
+            </div>
+            <div class="question" onclick="toggleAnswer('q5')">
+                <h3>Curabitur sit amet massa at risus?</h3>
+                <div id="q5" class="answer">Curabitur sit amet massa at risus viverra suscipit a nec libero. Proin eu sapien ullamcorper neque fermentum.</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

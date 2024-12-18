@@ -77,6 +77,12 @@
         });
       }
 
+      var helpCenter = document.getElementById("questions");
+      if (aboutUs) {
+        helpCenter.addEventListener("click", function (e) {
+          window.location.href = "HelpCenter.html";
+        });
+      }
       let isDefaultImage = true;
 
       function changeImage() {

@@ -44,9 +44,13 @@
   
   .white-border {
     position: absolute;
-    top: 449px;
+    top: 500px; /* Lower it further */
+    left: 50%;
+    transform: translateX(-50%);
     pointer-events: none;
-  }
+    z-index: 0;
+}
+
   
   .nachis {
     position: absolute;
@@ -54,9 +58,31 @@
     animation: nachis 2s ease-in-out infinite;
   }
 
-  .buttons {
+.button-container {
     position: absolute;
-    top: 513px;
+    top: 580px; /* Pozicija */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between; 
+    width: 800px; /* Ilgis per kuri tiesiasi mygtukai*/
+    z-index: 1;
+}
+
+.buttons {
+    width: 50px; /* Consistent button size */
+    height: 50px;
+    cursor: pointer;
+}
+
+  #connectButton {
+    position: absolute;
+    top: 430px; /* Cia auksti keisti */
+    left: 50%;  
+    transform: translateX(-50%); /* Ensure exact centering */
+    width: 140px; /* Mygtuko dydis*/
+    height: 140px;
     cursor: pointer;
     border-radius: 50%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }

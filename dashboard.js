@@ -1,6 +1,3 @@
-alert('dashboard.js loaded'); // Alerts if the script is running
-console.log('dashboard.js is loaded');
-
 const fs = require('fs');
 const path = require('path');
 const os = require('os');

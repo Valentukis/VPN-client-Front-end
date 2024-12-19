@@ -35,40 +35,33 @@ function checkAndInstallOpenVPN() {
     return;
   }
 
-  // Run 'openvpn --version' to verify installation
-  exec(`"${openvpnPath}" --version`, (error, stdout, stderr) => {
-    if (!error && stdout) {
-      console.log("OpenVPN is already installed:", stdout);
-      return;
+  console.warn("OpenVPN is not installed. Launching installer...");
+
+  // Install OpenVPN silently
+  const installer = spawn("msiexec", ["/i", installerPath, "/qn"], {
+    stdio: "inherit",
+    shell: true,
+  });
+
+  installer.on("close", (code) => {
+    if (code === 0) {
+      console.log("OpenVPN installed successfully.");
+    } else {
+      console.error(`OpenVPN installation failed with exit code ${code}`);
     }
+  });
 
-    console.warn("OpenVPN is not installed. Launching installer...");
-
-    // Install OpenVPN silently
-    const installer = spawn("msiexec", ["/i", installerPath, "/qn"], {
-      stdio: "inherit",
-      shell: true,
-    });
-
-    installer.on("close", (code) => {
-      if (code === 0) {
-        console.log("OpenVPN installed successfully.");
-      } else {
-        console.error(`OpenVPN installation failed with exit code ${code}`);
-      }
-    });
-
-    installer.on("error", (err) => {
-      console.error("Failed to launch OpenVPN installer:", err);
-    });
+  installer.on("error", (err) => {
+    console.error("Failed to launch OpenVPN installer:", err);
   });
 }
-
 
 // Create the main window
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
-    // width: isDev ? 1200 : 800,
+    webPreferences: {
+      devTools: isDev, // Enable only in development
+    },
     width: 800,
     height: 600,
     useContentSize: true,
@@ -81,7 +74,7 @@ function createMainWindow() {
   // Open dev tools if in dev environment
   if (isDev) {
     mainWindow.webContents.openDevTools();
-  } /*Cia ryt komparcho pritstatymui, isdev checkas neveikia*/
+  }
 
   // Load your HTML file
   mainWindow.loadFile("index.html");

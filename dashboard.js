@@ -1,26 +1,134 @@
 const fs = require('fs');
 const path = require('path');
-const os = require('os'); // Import the os module to get the Documents folder path
-const { spawn } = require('child_process'); // Use spawn for better process control
+const os = require('os');
+const { spawn, execSync } = require('child_process');
 const isDev = process.env.NODE_ENV === "development" || !require("electron").app.isPackaged;
 
-let vpnProcess = null; // Declare vpnProcess globally to track the OpenVPN process
+let vpnProcess = null; // Track the VPN process globally
+const credentialsPath = path.join(os.homedir(), 'Documents', 'credentials.txt'); // Credentials path
 
 document.addEventListener('DOMContentLoaded', () => {
   const connectButton = document.getElementById('connectButton');
 
+  initializeVPNState(); // Sync state with existing processes on page load
+
   if (connectButton) {
     connectButton.addEventListener('click', () => {
+      if (vpnProcess || localStorage.getItem('vpnStatus') === 'connected') {
+        disconnectFromVPN();
+      } else {
+        connectToVPN();
+      }
+    });
+  }
+});
 
-     // Create the credentials file
+function initializeVPNState() {
+  console.log('Initializing VPN state...');
+  const isStoredConnected = localStorage.getItem('vpnStatus') === 'connected';
+  const isProcessRunning = checkOpenVPNProcess();
+
+  if (isStoredConnected && isProcessRunning) {
+    console.log('VPN is connected, syncing button state...');
+    updateButtonState(true);
+  } else if (isStoredConnected && !isProcessRunning) {
+    console.log('No OpenVPN process running, resetting state...');
+    localStorage.removeItem('vpnStatus');
+    updateButtonState(false);
+  } else if (!isStoredConnected && isProcessRunning) {
+    console.log('Stray OpenVPN process found. Terminating...');
+    forceTerminateOpenVPN();
+    updateButtonState(false);
+  } else {
+    updateButtonState(false);
+  }
+}
+
+function checkOpenVPNProcess() {
+  try {
+    const result = execSync('tasklist /FI "IMAGENAME eq openvpn.exe"', { encoding: 'utf-8' });
+    return result.toLowerCase().includes('openvpn.exe');
+  } catch (error) {
+    console.error('Error checking OpenVPN process:', error);
+    return false;
+  }
+}
+
+function forceTerminateOpenVPN() {
+  try {
+    execSync('taskkill /IM openvpn.exe /F', { stdio: 'inherit' });
+    console.log('Stray OpenVPN process terminated.');
+  } catch (error) {
+    console.error('Failed to terminate OpenVPN process:', error);
+  }
+}
+
+function connectToVPN() {
+  // Create credentials file
   const credentialsContent = 'test\ntest';
-  const credentialsPath = path.join(os.homedir(), 'Documents', 'credentials.txt');
-
   fs.writeFileSync(credentialsPath, credentialsContent);
 
+  // Generate OpenVPN configuration
+  const vpnConfigPath = generateVPNConfig();
 
-      // Generate OpenVPN configuration content
-      const vpnConfig = `
+  // Determine OpenVPN executable path
+  const openVPNCommand = isDev
+    ? path.join("C:", "Program Files", "OpenVPN", "bin", "openvpn.exe")
+    : path.join(process.resourcesPath, "resources", "openvpn", "bin", "openvpn.exe");
+
+  const openVPNArgs = ['--config', vpnConfigPath];
+
+  vpnProcess = spawn(openVPNCommand, openVPNArgs);
+
+  vpnProcess.stdout.on('data', (data) => {
+    console.log(`OpenVPN Output: ${data.toString()}`);
+    if (data.toString().includes('Peer Connection Initiated')) {
+      localStorage.setItem('vpnStatus', 'connected');
+      updateButtonState(true);
+    }
+  });
+
+  vpnProcess.stderr.on('data', (data) => {
+    console.error(`OpenVPN Error: ${data.toString()}`);
+  });
+
+  vpnProcess.on('close', (code) => {
+    console.log(`OpenVPN process exited with code ${code}`);
+    vpnProcess = null;
+    localStorage.removeItem('vpnStatus');
+    updateButtonState(false);
+  });
+
+  vpnProcess.on('error', (error) => {
+    console.error('Failed to start OpenVPN process:', error);
+    alert('Failed to connect to VPN. Please check your configuration or permissions.');
+  });
+
+  alert('Connecting to VPN...');
+}
+
+function disconnectFromVPN() {
+  if (vpnProcess) {
+    vpnProcess.kill('SIGTERM');
+    vpnProcess = null;
+    alert('Disconnecting from VPN...');
+    localStorage.removeItem('vpnStatus');
+    updateButtonState(false); // Update button to "disconnected"
+  } else if (checkOpenVPNProcess()) {
+    console.log('Force disconnecting stray OpenVPN process...');
+    forceTerminateOpenVPN();
+    alert('Disconnecting from VPN...');
+    localStorage.removeItem('vpnStatus');
+    updateButtonState(false); // Ensure button switches to "disconnected"
+  } else {
+    alert('No active VPN process found.');
+    localStorage.removeItem('vpnStatus');
+    updateButtonState(false); // Ensure button switches to "disconnected"
+  }
+}
+
+function generateVPNConfig() {
+  const vpnConfigContent = `
 # Automatically generated OpenVPN client config file
 # Generated on Thu Dec 12 16:51:01 2024 by 4b5756a4e626
 # Note: this config file contains inline private keys
@@ -60,6 +168,9 @@ remote 79.132.173.139
 port 443
 dev tun
 dev-type tun
+redirect-gateway def1
+dhcp-option DNS 8.8.8.8
+dhcp-option DNS 8.8.4.4
 remote-cert-tls server
 tls-version-min 1.2
 reneg-sec 604800
@@ -152,55 +263,20 @@ zHpfzIGb/y1HPw4OJSg9cO3iI/bRVMMBWQ==
 
 `;
 
+  const vpnConfigPath = path.join(os.homedir(), 'Documents', 'user-config.ovpn');
+  fs.writeFileSync(vpnConfigPath, vpnConfigContent);
+  return vpnConfigPath;
+}
 
-      // Save the file to the user's Documents folder
-      const documentsPath = path.join(os.homedir(), 'Documents'); // Get the Documents folder path
-      const filePath = path.join(documentsPath, 'user-config.ovpn'); // Path for the .ovpn file
-
-      // Write the configuration to the file
-      fs.writeFile(filePath, vpnConfig, (err) => {
-        if (err) {
-          console.error('Error writing VPN configuration:', err);
-          alert('Failed to generate VPN configuration file!');
-        } else {
-          console.log('VPN configuration saved at:', filePath);
-          alert(`VPN configuration file generated and saved successfully in: ${filePath}`);
-
-          // Connect to OpenVPN using the generated file
-          connectToVPN(filePath);
-        }
-      });
-    });
+function updateButtonState(isConnected) {
+  const connectButton = document.getElementById('connectButton');
+  if (isConnected) {
+    connectButton.src = "Images/connection_clicked.png";
+  } else {
+    connectButton.src = "Images/connection.png";
+    console.log("KIAUSAI");
+    setTimeout(() => {
+      connectButton.src = "Images/connection.png";
+    }, 50);
   }
-});
-
-function connectToVPN(configFilePath) {
-  const openVPNCommand = isDev
-    ? path.join("C:", "Program Files", "OpenVPN", "bin", "openvpn.exe") // Development absolute path
-    : path.join(process.resourcesPath, "resources", "openvpn", "bin", "openvpn.exe"); // Build path
-
-  const openVPNArgs = ['--config', configFilePath];
-
-  vpnProcess = spawn(openVPNCommand, openVPNArgs);
-
-  vpnProcess.stdout.on('data', (data) => {
-    console.log(`OpenVPN Output: ${data.toString()}`);
-  });
-
-  vpnProcess.stderr.on('data', (data) => {
-    console.error(`OpenVPN Error: ${data.toString()}`);
-  });
-
-  vpnProcess.on('close', (code) => {
-    console.log(`OpenVPN process exited with code ${code}`);
-    alert('VPN disconnected.');
-    vpnProcess = null; // Reset the process tracker
-  });
-
-  vpnProcess.on('error', (error) => {
-    console.error('Failed to start OpenVPN process:', error);
-    alert('Failed to connect to VPN. Please check your configuration or permissions.');
-  });
-
-  alert('Connecting to VPN...');
 }

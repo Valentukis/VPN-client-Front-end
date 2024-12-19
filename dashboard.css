@@ -27,6 +27,7 @@
     border-radius: 50%;
     transition: transform 0.5s ease;
     opacity: 0;
+    z-index: 2;
   }
 
   input:active {
@@ -46,8 +47,8 @@
     position: fixed;
     top: 449px;
     left: 0px;
-    pointer-events: none;
-  }
+    transition: transform 0.5s ease;
+}
   
   .nachis {
     position: absolute;
@@ -60,4 +61,5 @@
     top: 513px;
     cursor: pointer;
     border-radius: 50%;
+    transition: transform 0.5s ease;
   }

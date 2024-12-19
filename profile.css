@@ -1,0 +1,26 @@
+* {
+    position: absolute;
+    scrollbar-width: none;
+}
+
+.profile {
+    top: 150px;
+    left: 325px;
+    width: 150px;
+}
+
+.text {
+    width: 200px;
+    font-family: Poppins;
+    left: 300px;
+    text-align: center;
+    color: #727272;
+}
+
+.background {
+    width: 800px;
+    height: 600px;
+    top: -10px;
+    left: -10px;
+    z-index: -1;
+}

@@ -12,6 +12,20 @@ if (aboutUs) {
   });
 }
 
+var helpCenter = document.getElementById("questions");
+if (aboutUs) {
+  helpCenter.addEventListener("click", function (e) {
+    window.location.href = "HelpCenter.html";
+  });
+}
+
+var helpCenter = document.getElementById("profile");
+if (aboutUs) {
+  helpCenter.addEventListener("click", function (e) {
+    window.location.href = "profile.html";
+  });
+}
+
 let isDefaultImage = true;
 
 function changeImage() {
@@ -27,3 +41,22 @@ function changeImage() {
     connectButton.classList.remove("fade-out");
   });
 }
+
+const image = document.getElementById("whiteBorder");
+const button = document.querySelectorAll(".buttons");
+let isMovedDown = false;
+
+image.addEventListener("click", () => {
+  if (!isMovedDown) {
+    button.forEach((buttons) => {
+      buttons.style.transform = "translateY(100px)";
+    });
+    image.style.transform = "translateY(100px)";
+  } else {
+    button.forEach((buttons) => {
+      buttons.style.transform = "translateY(0)";
+    });
+    image.style.transform = "translateY(0)";
+  }
+  isMovedDown = !isMovedDown;
+});

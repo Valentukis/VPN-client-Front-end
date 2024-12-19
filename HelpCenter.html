@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help Center</title>
+    <link rel="stylesheet" href="HelpCenter.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="help-center">
+      <h1>Help Center</h1>
+      <h2>How can we help you?</h2>
+      <p>Commonly asked questions:</p>
+
+      <div class="faq">
+        <div class="question" onclick="toggleAnswer('q1')">
+          <h3>What is a VPN?</h3>
+          <div id="q1" class="answer">
+            VPN stands for "Virtual Private Network" and describes the
+            opportunity to establish a protected network connection when using
+            public networks.
+          </div>
+        </div>
+        <div class="question" onclick="toggleAnswer('q2')">
+          <h3>What does a VPN do?</h3>
+          <div id="q2" class="answer">
+            It protects its users by encrypting their data and masking their IP
+            addresses. This hides their browsing activity, identity, and
+            location, allowing for greater privacy and autonomy.
+          </div>
+        </div>
+        <div class="question" onclick="toggleAnswer('q3')">
+          <h3>How to connect to NachoVPN?</h3>
+          <div id="q3" class="answer">
+            Click the connection button on the dashboard and you are all set.
+          </div>
+        </div>
+        <div class="question" onclick="toggleAnswer('q4')">
+          <h3>Is it safe?</h3>
+          <div id="q4" class="answer">Yes.</div>
+        </div>
+      </div>
+    </div>
+
+    <img
+      class="white-border"
+      id="whiteBorder"
+      src="Images/white-border.png"
+      alt="Border"
+    />
+    <img
+      class="buttons"
+      style="left: 39px"
+      id="home"
+      src="Images/home.png"
+      alt="Home"
+    />
+    <img
+      class="buttons"
+      style="left: 191px"
+      id="profile"
+      src="Images/profile.png"
+      alt="Profile"
+    />
+    <img
+      class="buttons"
+      style="left: 543px"
+      id="aboutUs"
+      src="Images/about_us.png"
+      alt="About us"
+    />
+    <img
+      class="buttons"
+      style="left: 704px"
+      id="questions"
+      src="Images/questions.png"
+      alt="Questions"
+    />
+
+    <script src="buttonlogic.js"></script>
+
+    <script>
+      function toggleAnswer(id) {
+        const answer = document.getElementById(id);
+        answer.classList.toggle("show");
+      }
+    </script>
+  </body>
+</html>

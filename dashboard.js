@@ -1,8 +1,10 @@
+alert('dashboard.js loaded'); // Alerts if the script is running
+console.log('dashboard.js is loaded');
+
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { spawn, execSync } = require('child_process');
-const isDev = process.env.NODE_ENV === "development" || !require("electron").app.isPackaged;
 
 let vpnProcess = null; // Track the VPN process globally
 const credentialsPath = path.join(os.homedir(), 'Documents', 'credentials.txt'); // Credentials path
@@ -72,9 +74,7 @@ function connectToVPN() {
   const vpnConfigPath = generateVPNConfig();
 
   // Determine OpenVPN executable path
-  const openVPNCommand = isDev
-    ? path.join("C:", "Program Files", "OpenVPN", "bin", "openvpn.exe")
-    : path.join(process.resourcesPath, "resources", "openvpn", "bin", "openvpn.exe");
+  const openVPNCommand = path.join("C:", "Program Files", "OpenVPN", "bin", "openvpn.exe");
 
   const openVPNArgs = ['--config', vpnConfigPath];
 
@@ -274,7 +274,6 @@ function updateButtonState(isConnected) {
     connectButton.src = "Images/connection_clicked.png";
   } else {
     connectButton.src = "Images/connection.png";
-    console.log("KIAUSAI");
     setTimeout(() => {
       connectButton.src = "Images/connection.png";
     }, 50);

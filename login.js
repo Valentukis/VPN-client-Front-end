@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('loginButton');
     const emailInput = document.getElementById('email');
@@ -19,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
         try {
           // Send data to the backend  
-          const SERVER_IP = process.env.SERVER_IP || 'localhost';
-          const PORT = process.env.PORT || '3000';
+          const SERVER_IP = process.env.SERVER_IP;
+          const PORT = process.env.PORT;
   
           const response = await fetch(`http://${SERVER_IP}:${PORT}/auth/login`, {
             method: 'POST',
@@ -47,4 +49,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-  

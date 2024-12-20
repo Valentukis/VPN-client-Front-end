@@ -23,7 +23,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "electron-is-dev": "^3.0.1",
     "express": "^4.21.1",
     "mysql2": "^3.11.5"
@@ -45,26 +45,26 @@
       "resources/**"
     ],
     "extraResources": [
-    {
-      "from": "resources",
-      "to": "resources"
-    }
-  ],
+      {
+        "from": "resources",
+        "to": "resources"
+      }
+    ],
     "win": {
-  "target": [
-    "nsis",
-    "portable"
-  ],
-  "icon": "Images/app_icon.ico",
-  "requestedExecutionLevel": "requireAdministrator"
-},
-"nsis": {
-  "oneClick": false,
-  "allowToChangeInstallationDirectory": true,
-  "createDesktopShortcut": true,
-  "createStartMenuShortcut": true,
-  "include": "installer.nsh"
-},
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "Images/app_icon.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "include": "installer.nsh"
+    },
     "mac": {
       "target": [
         "dmg"

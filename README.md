@@ -2,8 +2,6 @@
 
 Welcome to **NachoVPN**, a desktop application built with **Electron** that provides secure VPN connectivity with user authentication. This project is developed by a team of six first-year students at **Vilnius University**, as part of the **Informational Systems Engineering** course.
 
-> **Note:** This project is currently in **Alpha** stage. The backend has not yet been fully deployed and is intended for development and testing purposes.
-
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -17,8 +15,6 @@ Welcome to **NachoVPN**, a desktop application built with **Electron** that prov
 - [Usage](#usage)
   - [Running the Backend](#running-the-backend)
   - [Running the Frontend](#running-the-frontend)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
@@ -151,7 +147,17 @@ Ensure you have the following installed on your system:
 
     This command uses `nodemon` to automatically restart the server on code changes.
 
-    The backend server will run on `http://localhost:3000`.
+    To run the backend in production mode (logging to `backend.log`):
+    ```bash
+    npm run prod
+    ```
+
+    And to stop the backend server:
+    ```bash
+    npm run stop
+    ```
+
+    The backend server will run on `http://localhost:3000` by default. For production, ensure the backend is properly deployed and accessible at your production server URL.
 
 ### Running the Frontend
 
@@ -163,7 +169,7 @@ Ensure you have the following installed on your system:
     npm start
     ```
 
-    This command launches the Electron app, connecting to the locally running backend server.
+    This command launches the Electron app, connecting to the locally running backend server by default. Ensure the backend is properly deployed and accessible at your production server URL if running in production.
 
 2. **Build the Application**
 

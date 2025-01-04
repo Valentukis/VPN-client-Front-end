@@ -2,6 +2,7 @@ const path = require("path");
 const { app, BrowserWindow, Menu } = require("electron");
 const { exec, spawn } = require("child_process");
 const fs = require("fs");
+require('dotenv').config();
 
 let vpnProcess; // Track the global vpnProcess here
 

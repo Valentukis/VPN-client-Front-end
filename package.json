@@ -36,6 +36,7 @@
     },
     "files": [
       "**/*",
+      ".env",
       "!node_modules/.bin",
       "!**/*.test.js",
       "!README.md",

@@ -16,9 +16,8 @@ dist/
 # Ignore the .ovpn file
 user-config.ovpn
 
-#Ignore env 
-frontend.env
-backend.env
+#Ignore env files (frontend and backend)
+*.env
 
 # Ignore the resources folder (e.g., OpenVPN installer)
 resources/

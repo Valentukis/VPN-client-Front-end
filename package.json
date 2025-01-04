@@ -38,6 +38,7 @@
       "**/*",
       "frontend.env",
       "!node_modules/.bin",
+      "!backend.env",
       "!**/*.test.js",
       "!README.md",
       "!dist/",

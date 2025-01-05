@@ -127,15 +127,16 @@ function disconnectFromVPN() {
 function generateVPNConfig() {
   const vpnConfigContent = `
 # Automatically generated OpenVPN client config file
-# Generated on Thu Dec 12 16:51:01 2024 by 4b5756a4e626
+# Generated on Sun Jan  5 13:11:01 2025 by 4b5756a4e626
 # Note: this config file contains inline private keys
 #       and therefore should be kept confidential!
-#       Certificate serial: 7990393095499097529, certificate common name: test
-#       Expires 2034-12-10 16:51:01
+#       Certificate serial: 7196962871979085263, certificate common name: NachoVPN_AUTOLOGIN
+#       Expires 2035-01-03 13:11:01
 # Note: this configuration is user-locked to the username below
-# OVPN_ACCESS_SERVER_USERNAME=test
+# OVPN_ACCESS_SERVER_USERNAME=NachoVPN
 # Define the profile name of this particular configuration file
-# OVPN_ACCESS_SERVER_PROFILE=test@79.132.173.139
+# OVPN_ACCESS_SERVER_PROFILE=NachoVPN@79.132.173.139/AUTOLOGIN
+# OVPN_ACCESS_SERVER_AUTOLOGIN=1
 
 # Default Cipher
 cipher AES-256-CBC
@@ -165,17 +166,12 @@ remote 79.132.173.139
 port 443
 dev tun
 dev-type tun
-redirect-gateway def1
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
 remote-cert-tls server
 tls-version-min 1.2
 reneg-sec 604800
 tun-mtu 1500
-auth-user-pass
 verb 3
 push-peer-info
-auth-user-pass ${credentialsPath.replace(/\\/g, '\\\\')}
 
 <ca>
 -----BEGIN CERTIFICATE-----
@@ -191,47 +187,47 @@ CTMoTttiv+Ys+Vy1A/Gw4MVuu3UIYOxPls3SubDscJLIggPHuo0Sp/8RuhA=
 </ca>
 <cert>
 -----BEGIN CERTIFICATE-----
-MIIBnDCCASKgAwIBAgIIbuOUL3j1JbkwCgYIKoZIzj0EAwIwFTETMBEGA1UEAwwK
-T3BlblZQTiBDQTAeFw0yNDEyMTExNjUxMDFaFw0zNDEyMTAxNjUxMDFaMA8xDTAL
-BgNVBAMMBHRlc3QwdjAQBgcqhkjOPQIBBgUrgQQAIgNiAATKGqzPbkUf2h50ByPo
-sM6xsinoNYouUgwEeHr9OuQWl9/lmJc1S1pNBOXNHIpETXPZ+YPDAh3q404G0S36
-b4Yui60U1iQpQkBR27hF+VnCgjiwqRNPLjLVtLGDdgqVl2KjRTBDMAwGA1UdEwEB
-/wQCMAAwCwYDVR0PBAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMCMBEGCWCGSAGG
-+EIBAQQEAwIHgDAKBggqhkjOPQQDAgNoADBlAjEA8ZnuUejCGYi2AbpjY0CI2BN7
-gU0XT/vQQExek3ff5jN3V84VkAiKdFo1hvFhj3GuAjBPs7gxTqfJFmjSZATFmgs8
-E1Ct3jvcnWCL4F0nNBJiyaifTYYNxa+HFQfJmbgxcX0=
+MIIBqzCCATCgAwIBAgIIY+C/mdX9Dc8wCgYIKoZIzj0EAwIwFTETMBEGA1UEAwwK
+T3BlblZQTiBDQTAeFw0yNTAxMDQxMzExMDFaFw0zNTAxMDMxMzExMDFaMB0xGzAZ
+BgNVBAMMEk5hY2hvVlBOX0FVVE9MT0dJTjB2MBAGByqGSM49AgEGBSuBBAAiA2IA
+BEwFhQdkZYNmtzB2CggwecfQyK+G8p0CBnSctYMD2byb2Vx9XRQ8IsR8dPK61gVp
+xZREUPaGRf1lTn6Jya9bM/Vlj4dQASh77+qCpqp8kufR324DcX0mTAgCNxv6pUIW
+daNFMEMwDAYDVR0TAQH/BAIwADALBgNVHQ8EBAMCB4AwEwYDVR0lBAwwCgYIKwYB
+BQUHAwIwEQYJYIZIAYb4QgEBBAQDAgeAMAoGCCqGSM49BAMCA2kAMGYCMQDYH4nW
+v+Rq6tZ1p+Bi3xWJQnVdSzUn54SMuK+8eUYAIaua0KoN0r9/3LVaMjuJrw4CMQCj
+yuNGboj8JF+FTdIUbDA+1h9xIXGpHXQ+wy5NnyoP4tJ2grC1JEV+uFaCuGyuVZs=
 -----END CERTIFICATE-----
 </cert>
 <key>
 -----BEGIN PRIVATE KEY-----
-MIG2AgEAMBAGByqGSM49AgEGBSuBBAAiBIGeMIGbAgEBBDCdVVaUrPBw/XII+VWK
-zoM1SKvjK4Xm/n+3w0tDk333RtYrc9dZ5Y/NF5PYKUjjCQGhZANiAATKGqzPbkUf
-2h50ByPosM6xsinoNYouUgwEeHr9OuQWl9/lmJc1S1pNBOXNHIpETXPZ+YPDAh3q
-404G0S36b4Yui60U1iQpQkBR27hF+VnCgjiwqRNPLjLVtLGDdgqVl2I=
+MIG2AgEAMBAGByqGSM49AgEGBSuBBAAiBIGeMIGbAgEBBDAai+Q41YCFjCr6vDUK
+jOTNmaTPEsKfGMLpca5PCiMbnY19xyd8yDnlOj/ahP8OZuehZANiAARMBYUHZGWD
+ZrcwdgoIMHnH0MivhvKdAgZ0nLWDA9m8m9lcfV0UPCLEfHTyutYFacWURFD2hkX9
+ZU5+icmvWzP1ZY+HUAEoe+/qgqaqfJLn0d9uA3F9JkwIAjcb+qVCFnU=
 -----END PRIVATE KEY-----
 </key>
 <tls-crypt-v2>
 -----BEGIN OpenVPN tls-crypt-v2 client key-----
-NioyGBX4tRXoc6SRR0hmFVC2gJ25Uk4dSPePnOpbhx5zEgL+Qbd4uDBoVYwOupjZ
-vKAtcYKHKKshe8DWMdE+C7mOd7V7SFxOt5DQ0CaejF4MFdcgoneCqqFfEJr525hu
-uJJQiE/SuN4VgCBuF4gsPpjaHCD4MUmKHBPVDt/F8kAqtZoSrrqLHYjIYDiZwTWF
-yeTFBehO5HLuLhxLXO+9qwIwuUYlkDD+9HGNw4jS3Uq0MljEpbApdGsrv5OfRhjP
-TEz5NmwG1CkG6UaGdVSSJ95UxSrR6VlAmpXKylT5a7/El5B63MK44VwOj/TonhXi
-6K6d/mF3MvnSn2jsTf40iHPvO7ms/3MYfrJgR6327WgeynYfk1e7qj3jerKYsuQ/
-Hbf7cork2g+JYo+VVgJZWoeQOH0FlU6YJk1BVtSPR/Yb8j/gr6pPhsoX7eILlKhs
-+qA09Kp3IQHjZt/y+D3NoozfstX0+tyCxS/cMfXyQktyKC7+2Sc5fVbO+xFyi/Bo
-JR/9NVj3z9ePnbMwtPbU4M5oHuHp346UiPC66J80EF0UOkil57mYCjLYhUEqD6+5
-6DrOxp/apvoXY+T4bBeE4FI4B3BHCM2ENhIBYgfxyJg8BDsyEczRfeAh8GO9lYw5
-IbK86DY6u50hteMxnqI+U6eplYscveQtkM2vuCQC0ArzzSYxUMPpJe4o1aheoGnl
-AxvMnzGVgjsAv/YYDK8WnF3Ud2aNywUDr1m2q0TF+gMeJITr8UOCxd7tL1RnEDwr
-zHpfzIGb/y1HPw4OJSg9cO3iI/bRVMMBWQ==
+Hnn9SoLF6/soPch0+dgu1lwox0bgVx8XkV7eJTLD6kYF5PtwQm3q9suaOEcyXlqx
+E6wAgmFcJN48oeIfML+UZGJ6Manli6XwOBigRczjCKETzNHvZtlR3xa6+Bmmk9Td
+I/1yJGDuLlOLnuEbmpuKmg/Ttgg4U+foSqIHgCV0KjpalXGASX5z7+D8ckrV0zNy
+NdPYSHC6GWwJtnehEVCdaXdH7M1GzjCNxW8YU1EupStYMluUcFBR4qyZe8Pn/1KJ
+OjfO409ConYpc+tj3dveJUVsovw3x6bWI3ED+erH/hzIx+qUH7x46i/q/cEHWREA
+6KlSBqCV9ZNJAPi675nE55FZeBYfNwjzZRP6ruq6NZsafq1aPFtDnI+U/jieNzFn
+7D7TGUaosR6GdX6MBth9YvdChoeFp+y7c5cuCoLGAmiDo7TtldX4J4PwOYFm4gyp
+2Za8YwNy2je91ZiPt35bo5VqUPvFse+R9mSa8KfQb341sEVbl4TPy+Dm7fbpM1bn
+HUjFB9j3+nJ28O/mfshs6A2IdPJNHXhTLB+aTYp5r5AP2JKB3WNwU8o5gEG1cyou
+tzoBx74iIoDKZWyGMp/KwlnxLXLLsrQt3bOiBcoCPycYBKLk5xBOJb1SsKXpn2vP
+CLKR2/tdjfPoYOxAnesnHi6gANUkbZxjVDajSU1M4LV4RJ7xbkmorWJoVtliR9+I
+ArCXG0pbSYIpKRi6XHiYsAJnbOt4aL0knueWieWL4WqVm4iXNHH/9v56AIyc5aAt
+OBaU75MoEjUgD1AWE1wPm0ZFQ6YIlEMBWQ==
 -----END OpenVPN tls-crypt-v2 client key-----
 </tls-crypt-v2>
 ## -----BEGIN RSA SIGNATURE-----
 ## DIGEST:sha256
-## MGYCMQDrvhhq64Q3wgFr5Te6tSaN8k/qKuQkHO8QGK66xmMd+Y
-## Pdo7btIyBQTLXCUterOVkCMQCWThrCuyOndU/UtsV5wpAaUwBm
-## KQp/cf8vEI5XK6VRiklVc6rtC3v/dzYxu7+onAk=
+## MGUCMApLaID+KaB2TZoGU7QHmha+gvDt6ZTcQJ0PT6DCj7GqpL
+## qluBAyBlibAA93ho08DwIxANCVRtAwdzDS6PgTNyfe29JweZX7
+## 6OrPQb325YRo/aru/3LrvbNZJ5e1Rohvr5hpXQ==
 ## -----END RSA SIGNATURE-----
 ## -----BEGIN CERTIFICATE-----
 ## MIIB1DCCAVqgAwIBAgIFAM5bp3swCgYIKoZIzj0EAwIwPjE8MDoGA1UEAwwzT3Bl
@@ -257,7 +253,6 @@ zHpfzIGb/y1HPw4OJSg9cO3iI/bRVMMBWQ==
 ## +S99GI9o0u77aavn9NzTqMhXlcBghR6slD1o7EcCMQDk+3Lv3etD04XRwXV55TLt
 ## SRyt+nNjmKOYSLpcflmYpztXitQkZv7N/1DqtDn+agI=
 ## -----END CERTIFICATE-----
-
 `;
 
   const vpnConfigPath = path.join(os.homedir(), 'Documents', 'user-config.ovpn');
